@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>KPoP.com</title>
+  <style>
+    .searchbar{
+      width:300px;
+      height:36px;
+      flex:1;
+      padding-left: 10px;
+      font-size: 17px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(192, 192, 192);
+      border-radius: 1px;
+      box-shadow:inset 1px 2px 5px rgba(0 ,0 ,0 ,0.05 );
+   }
+
+    .searchbar::placeholder{
+      font-family: Arial;
+      font-size: 17px;
+    }
+
+    .video-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr ;
+      column-gap: 25px;
+      row-gap: 40px;
+    }
+
+    .thumbnail-image{
+      width:100%;
+
+    }
+
+    .thumbnail{
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .channel-image{
+      width:50px;
+      border-radius:50%;
+      
+    }
+
+    
+    .info{
+      color:black;
+      font-family:Arial;
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    .video-stat{
+      font-family: Arial;
+      color:rgb(92, 92, 92);
+      font-size:14px;
+      margin-top: 6px;
+    }
+
+    .hashtag{
+      color:rgb(36, 36, 231);
+      font-style:italic;
+      font-size: 15px;
+      
+    }
+
+    .video-info{
+      display:grid;
+      grid-template-columns: 50px 1fr;
+      column-gap: 20px;
+      
+    }
+
+
+    body{
+      margin:0px;
+      padding-top: 100px;
+      padding-left: 115px;
+      padding-right: 15px;
+
+      background-color: rgb(248, 248, 248);
+
+    }
+
+    .header{
+      height:75px;
+      display:flex;
+      flex-direction: row;
+      justify-content:space-between;
+      margin-bottom: 35px;
+      background-color: white;
+
+      position:fixed;
+      top:0px;
+      left:0px;
+      right:0px;
+
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color:rgb(202, 201, 201);
+
+      z-index: 100;
+    }
+
+    .left-section{
+      display:flex;
+      align-items: center;
+    }
+
+    .middle-section{
+      flex:1;
+      margin-left:70px;
+      margin-right: 30px;
+      max-width: 600px;
+      display: flex;
+      align-items: center;
+    }
+
+    .right-section{
+      width:250px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-right: 20px;
+
+      position: relative;
+    }
+
+    .hamburger-menu{
+      height:25px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    
+    .youtube-logo{
+      height:120px;
+    }
+
+    .search-button{
+      height:40px;
+      width:60px;
+      background-color: rgb(241, 241, 241);
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(192, 192, 192);
+      margin-left: -1;
+      border-radius: 1px;
+      margin-right: 10px;
+
+      position: relative;
+    }
+
+    .voice-search-button{
+      height:40px;
+      width:40px;
+      margin-left: 3px;
+      border-radius: 20px;
+      border:none;
+      background-color: rgb(241, 241, 241);
+
+      position: relative;
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .search-icon{
+      height:20px;
+      margin-top: 2px;
+      
+    }
+
+    .voice-search-icon{
+      height:22px;
+      margin-top: 2px;
+      
+    }
+
+    .create-icon{
+      height:25px;
+    }
+
+    .apps-icon{
+      height:25px;
+    }
+
+    .bell-icon{
+      height:28px;
+    }
+
+    .current-user-picture{
+      height:46px;
+      border-radius: 50%;
+    }
+
+    .sidebar{
+      position:fixed;
+      background-color: white;
+      width:90px;
+      top:75px;
+      left:0px;
+      bottom:0px;
+
+      cursor: pointer;
+      z-index: 200;
+    }
+
+    .video-time{
+      position:absolute;
+      background-color: rgba(0, 0, 0, 0.706);
+      color:white;
+      
+      
+      right:6px;
+      bottom:10px;
+
+      padding-left: 6px;
+      padding-right: 6px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      border-radius: 2px;
+
+      font-family: Arial;
+
+  }
+
+  .notifications{
+    background-color: rgb(237, 10, 10);
+    color: white;
+
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border-radius: 70%;
+
+    position: absolute;
+    right:80px;
+    top:20px
+  }
+
+  .sidebar-link{
+    height:100px;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .sidebar-link:hover{
+    background-color: rgb(233, 233, 233);
+  }
+
+ 
+
+  .sidebar-link img{
+    height:28px;
+  }
+
+  .sidebar-link div{
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+
+  .middle-section .tooltip{
+    background-color: gray;
+    color:white;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    bottom: -30px;
+    left:0px;
+    border-radius: 2px;
+    font-family: Arial;
+
+    position: absolute;
+
+    opacity:0;
+    transition: opacity 0.3s;
+
+    pointer-events:none;
+
+    white-space: nowrap;
+  }
+
+  .search-button:hover .tooltip{
+    opacity:1;
+  }
+
+  .search-button, .voice-search-button, .apps-icon, .create-icon, .notifications, .bell-icon, .current-user-picture :hover{
+    cursor: pointer;
+  }
+
+  
+  .voice-search-button:hover .tooltip{
+    opacity: 1;
+  }
+
+  @media (max-width: 800px){
+    .video-grid{
+      grid-template-columns: 1fr 1fr;
+    }
+
+  }
+
+  @media(min-width: 1100px){
+    .video-grid{
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  </style>
+  </head>
+  <body>
+
+    <div class="header">
+      <div class="left-section">
+        <img class="hamburger-menu" src="icons/hamburger menu.png">
+        <img class="youtube-logo" src="icons/kpop2.png">
+      </div>
+      <div class="middle-section">
+        <input class="searchbar" type="text" placeholder="Search">
+        <button class="search-button">
+          <img class="search-icon" src="icons/search-icon.png">
+          <div class="tooltip">Search</div>
+        </button>
+        <button class="voice-search-button">
+          <img  class="voice-search-icon" src="icons/image_processing20220801-17461-1cpax1r.png">
+          <div class="tooltip"> Search with your voice</div>
+        </button>
+        
+      </div>
+      <div class="right-section">
+        <img class="create-icon" src="icons/create.png">
+        <img class="apps-icon" src="icons/apps2.png">
+        <img class="bell-icon" src="icons/bell.png">
+        <div class="notifications">4</div>
+        <img class="current-user-picture" src="profile/K_365.png">
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-link">
+        <img class="sidebar-icon" src="icons/home.svg">
+        <div>Home</div>
+      </div>
+      <div class="sidebar-link">
+        <img class="sidebar-icon" src="icons/explore.png">
+        <div>Explore</div>
+      </div>
+      <div class="sidebar-link">
+        <img class="sidebar-icon" src="icons/subs2.png">
+        <div>Subscriptions</div>
+      </div>
+      <div class="sidebar-link">
+        <img class="sidebar-icon" src="icons/originals3.png">
+        <div>Originals</div>
+      </div>
+      <div class="sidebar-link">
+        <img class="sidebar-icon" src="icons/music.png">
+        <div>YouTube Music</div>
+      </div>
+      <div class="sidebar-link">
+        <img class="sidebar-icon" src="icons/library4.png">
+        <div>Library</div>
+      </div>
+    </div>
+    
+    
+    <div class="video-grid">
+      <div class="video-preview">
+        <div class="thumbnail">
+          <a href="friends.html" target="_blank"><img class="thumbnail-image" src="thumbnails/FRIENDS.jpg"></a>
+          <div class="video-time">3:18</div>
+        </div>
+        <div class="video-info">
+          <div class="channel-logo">
+            <img class="channel-image" src="profile/K_365.png">
+          </div>
+          <div class="video-details">
+            <div class="video-title">
+                <p class="info"> Friends - BTS V & Jimin lyrics video [Eng/Han/Rom] <span class="hashtag">#BTS #Kim TaeHyung #Park Jimin</span></p>
+            </div>
+            <div >
+              <p class="video-stat">3.9M views &#183; 2 years ago</p>
+            </div> 
+          </div>
+          
+  
+        </div>
+      </div>
+  
+  
+      <div class="video-preview">
+        <div class="thumbnail">
+          <a href="BetYouWanna.html" target="_blank"><img class="thumbnail-image" src="thumbnails/BET YOU WANNA.jpg"></a>
+          <div class="video-time">2:37</div>
+        </div>
+        <div class="video-info">
+          <div class="channel-logo">
+            <img class="channel-image" src="profile/K_365.png">
+          </div>
+          <div class="video-details">
+            <div class="video-title">
+                <p class="info"> Bet You Wanna - Blackpink with CardiB lyrics video [Eng/Han/Rom] <span class="hashtag"> #Blackpink</span></p>
+            </div>
+            <div >
+              <p class="video-stat">299k views &#183; 11 months ago</p>
+            </div> 
+          </div>
+          
+  
+        </div>
+      </div>
+      
+      
+      <div class="video-preview">
+        <div class="thumbnail">
+          <a href="NextLevel.html" target="_blank"><img class="thumbnail-image" src="thumbnails/NExt level.jpg"></a>
+          <div class="video-time">3.36</div>
+        </div>
+        <div class="video-info">
+          <div class="channel-logo">
+            <img class="channel-image" src="profile/K_365.png">
+          </div>
+          <div class="video-details">
+            <div class="video-title">
+                <p class="info"> Next Level - Aespa lyrics video [Eng/Han/Rom] <span class="hashtag"> #aespa #SM Entertainment</span></p>
+            </div>
+            <div >
+              <p class="video-stat">175k views &#183; 7 months ago</p>
+            </div> 
+          </div>
+          
+          
+  
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="thumbnail">
+          <a href="Really.html" target="_blank"><img class="thumbnail-image" src="thumbnails/REALLY.jpg"></a>
+          <div class="video-time">3:13</div>
+        </div>
+        <div class="video-info">
+          <div class="channel-logo">
+            <img class="channel-image" src="profile/K_365.png">
+          </div>
+          <div class="video-details">
+            <div class="video-title">
+                <p class="info"> Really - Blackpink lyrics video [Eng/Han/Rom] <span class="hashtag"> #Blackpink #Lisa #Jennie #Jisoo #Rose</span></p>
+            </div>
+            <div >
+              <p class="video-stat">451k views &#183; 3 years ago</p>
+            </div> 
+          </div>
+          
+  
+        </div>
+      </div>
+
+
+      <div class="video-preview">
+        <div class="thumbnail">
+          <a href="queenCard.html" target="_blank"><img class="thumbnail-image" src="thumbnails/Queencard.jpg"></a>
+          <div class="video-time">2:41</div>
+        </div>
+        <div class="video-info">
+          <div class="channel-logo">
+            <img class="channel-image" src="profile/K_365.png">
+          </div>
+          <div class="video-details">
+            <div class="video-title">
+                <p class="info"> Queencard - G(I-DLE) lyrics video [Eng/Han/Rom] <span class="hashtag"> #G-IDLE</span></p>
+            </div>
+            <div >
+              <p class="video-stat">2.6k views &#183; 1 months ago</p>
+            </div> 
+          </div>
+          
+  
+        </div>
+      </div>
+
+
+      <div class="video-preview">
+        <div class="thumbnail">
+          <a href="micDrop.html" target="_blank"><img class="thumbnail-image" src="thumbnails/MIC DROP.jpg"></a>
+          <div class="video-time">5:05</div>
+        </div>
+        <div class="video-info">
+          <div class="channel-logo">
+            <img class="channel-image" src="profile/K_365.png">
+          </div>
+          <div class="video-details">
+            <div class="video-title">
+                <p class="info"> MIC Drop - BTS (방탄소년단) lyrics video [Eng/Han/Rom] <span class="hashtag"> #BTS #방탄소년단</span></p>
+            </div>
+            <div >
+              <p class="video-stat">725k views &#183; 2 years ago</p>
+            </div> 
+          </div>
+          
+  
+        </div>
+      </div>
+
+
+      <div class="video-preview">
+        <div class="thumbnail">
+          <a href="crazyOverYou.html" target="_blank"><img class="thumbnail-image" src="thumbnails/Add a heading.jpg"></a>
+          <div class="video-time">2:42</div>
+        </div>
+        <div class="video-info">
+          <div class="channel-logo">
+            <img class="channel-image" src="profile/K_365.png">
+          </div>
+          <div class="video-details">
+            <div class="video-title">
+                <p class="info"> Crazy Over You - Blackpink lyrics video [Eng/Han/Rom] <span class="hashtag"> #Blackpink #Lisa #Jennie #Jisoo #Rose</span></p>
+            </div>
+            <div >
+              <p class="video-stat">925 views &#183; 3 months ago</p>
+            </div> 
+          </div>
+          
+  
+        </div>
+      </div>
+
+
+      <div class="video-preview">
+        <div class="thumbnail">
+          <a href="runBts.html" target="_blank"><img class="thumbnail-image" src="thumbnails/RUN BTS.jpg"></a>
+          <div class="video-time">3:25</div>
+        </div>
+        <div class="video-info">
+          <div class="channel-logo">
+            <img class="channel-image" src="profile/K_365.png">
+          </div>
+          <div class="video-details">
+            <div class="video-title">
+                <p class="info"> Run BTS - BTS (방탄소년단) FMV <span class="hashtag"> #BTS #방탄소년단 </span></p>
+            </div>
+            <div >
+              <p class="video-stat">12.3M views &#183; 8 months ago</p>
+            </div> 
+          </div>
+          
+  
+        </div>
+      </div>
+      
+
+
+    </div>
+    
+    
+  </body>
+</html>
